@@ -33,7 +33,7 @@
           "ц": 2,
           "ок": 2
         },
-        lastIndex, reformedStr, forLong, splitted, groupped, forPseudo;
+        lastIndex, reformedStr, forLong, splitted, groupped, forPseudo, result;
       for (var i in strPub) {
         if (i.length > 1 && str.slice(-i.length) == i) {
           lastIndex = i;
@@ -63,36 +63,48 @@
           if (str.slice(-o.length) == o) reformedStr = str.slice(0, -exs[o]);
         }
       };
-    return reformedStr + strPub[(forPseudo || forLong || lastIndex)][cases[choice]].replace("%", lastIndex);
+
+      try {
+        result = reformedStr + strPub[(forPseudo || forLong || lastIndex)][cases[choice]].replace("%", lastIndex);
+      }
+      catch(err) {
+        result = str;
+      }
+      return result;
     }
   })
-  .controller('MainCtrl', ['$scope', 'authorAttitude', 'caseService', function($scope, authorAttitude, caseService) {
-    $scope.authorAttitude = authorAttitude;
-    $scope.eventName = '';
+  .controller('MainCtrl', ['$scope', '$window', 'authorAttitude', 'caseService', 
+      function($scope, $window, authorAttitude, caseService) {
+        $scope.authorAttitude = authorAttitude;
 
-    $scope.articleTitle = ""
+        var timeout_country = null;
+        $scope.$watch('countries', function(value) {
+          var value_ = value || '',
+              countries = value_.split(',')
+              ;
 
-    $scope.$watch('countries', function(value) {
-      var value_ = value || '',
-          countries = value_.split(',')
-          ;
+          $window.clearTimeout(timeout_country);
+          timeout_country = $window.setTimeout(function() {
+            $scope.acountries = _.chain(countries)
+            .filter(function(c) {
+              return jQuery.trim(c).length > 3;
+            })
+            .map(function(c) {
+              return caseService(c, 'r');
+            })
+            .value();
+            $scope.$digest();
+          }, 500);
 
-      $scope.acountries = _.chain(countries)
-        .filter(function(c) {
-          return jQuery.trim(c).length > 3;
-        })
-        .map(function(c) {
-          return caseService(c, 'r');
-        })
-        .value();
-    });
+        });
 
-    $scope.$watch('city', function(value) {
-      var value_ = value || '';
-      if (jQuery.trim(value_.length) > 3) {
-        $scope.acity = caseService(value_, 'p');
-      }
-    });
+        $scope.$watch('city', function(value) {
+          var value_ = value || '';
+          if (jQuery.trim(value_.length) > 3) {
+            $scope.acity = caseService(value_, 'p');
+          }
+        });
 
-  }]);
+    }
+  ]);
 }());

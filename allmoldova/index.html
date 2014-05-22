@@ -32,7 +32,10 @@
 					
 					
 							<div class="site-title">
-								<h2>Генератор новостей для раздела News BLITZ на allmoldova.com</h2>
+								<h2>Генератор News BLITZ для allmoldova.com</h2>
+							</div>
+							<div style="margin-top: 10px;">
+								Инструмент генерации шедевров в стиле <a href="http://www.allmoldova.com/project/news-blitz/3665.html">Moldcamp 2014: Drupal as a lifestyle</a>
 							</div>
 							<div class="post">
 								<h4>Базовая информация о событии</h4>
@@ -40,11 +43,13 @@
 								<hr />
 								<div class="form-group">
 									<label>Название мероприятия: </label>
-									<input class="form-control" placeholder="MoldEuroEventLux" ng-model="eventName" />
+									<input class="form-control" ng-model="eventName" />
+									<small>Например, MoldEuroEventLux</small>
 								</div>
 								<div class="form-group">
 									<label>Когда оно было?</label>
-									<input class="form-control" placeholder="17-18 мая" type="text"  ng-model="dates"/>
+									<input class="form-control" type="text"  ng-model="dates"/>
+									<small>День и месяц: 21 мая</small>
 								</div>
 								<div class="form-group">
 									<label>Первый в Молдове?</label>
@@ -55,41 +60,45 @@
 								</div>
 								<div class="form-group">
 									<label>В каком городе это было?</label>
-									<input class="form-control" placeholder="Кишинев" ng-model="city"/>
+									<input class="form-control" ng-model="city"/>
+									<small>Укажите название города используя кириллицу</small>
 								</div>
 								<div class="form-group">
-									<label>А где именно?</label>
-									<input class="form-control" placeholder="ASEM"  ng-model="place" />
+									<label>В каком здании проходило мероприятие?</label>
+									<input class="form-control" ng-model="place" />
 								</div>
 							</div>
 
 							<div class="post">
-								<small>Субъективное отношение автора к мероприятию</small>
-								<div class="form-group">
+								<small>Очень хорошо, теперь важно раскрыть субъективное отношение автора к мероприятию.</small>
+
+								<div class="form-group" style="margin-top: 5px;">
 									<label>Как это было:</label>
 									<select class="form-control" ng-model="attitude" ng-options="label for label in authorAttitude"></select>
 								</div>
 								<div class="form-group">
 									<label>Сколько было гостей?</label>
-									<input class="form-control" placeholder="130" ng-model="guests" type="number" />
+									<input class="form-control" ng-model="guests" type="number" ng-value="100"/>
 								</div>
 								
 								<div class="form-group">
 									<label>Перечислите через запятую название стран из которых прибыли гости:</label>
-									<textarea class="form-control" ng-model="countries"></textarea>
+									<textarea class="form-control" ng-model="countries" placeholder="Молдова, Украина"></textarea>
+									<small>Перечислите страны используя кириллицу, например: <strong>Молдова, Украина</strong></small>
 								</div>
 							</div>
 
 							<div class="post">
 								<h4>Текст для читателей</h4>
 								<blockquote><h3 ng-show="eventName">{{eventName}} As Lifestyle</h3><span ng-show="dates" ng-bind="dates"></span> <span ng-show="acity">в <span ng-bind="acity"></span></span> <span ng-show="eventName">состоялся <span ng-bind="eventName"></span><span ng-if="firstInMoldova">: первый в нашей стране</span>.</span> <span ng-show="attitude">Как это было? Если вкратце, то это было <span ng-bind="attitude"></span>!</span> <span ng-if="place">В здании <span ng-bind="place"></span> </span><span ng-if="guests">собралось свыше <span ng-bind="guests"></span> гостей</span> <span ng-if="acountries">из <span ng-bind="acountries"></span>, для того чтобы пообщаться, познакомиться, обменяться опытом и поделиться накопленными знаниями.</span>
-
+								<br /><br />
 								<a href="http://www.allmoldova.com">allmoldova</a>
 								</blockquote>
 							</div>
 						
 							<div class="post centered">
 								<img src="assets/img/ui-pic.jpg" class="img-circle" width="90">
+								<p><a href="http://www.allmoldova.com/about/work1.html">Мы не каждый день принимаем на работу новых сотрудников, но месяц за месяцем наша команда продолжает расти.</a></p>
 							</div>
 							
 							<div class="site-footer">
@@ -101,15 +110,15 @@
 			</form>
 		</div><! --/container -->
 		                
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
 
 
     <script src="assets/js/bootstrap.min.js"></script>
     
     <script type="text/javascript" src="assets/js/jquery.backstretch.min.js"></script>
     <script>$(function(){$.backstretch("assets/img/bg01.jpg", {speed: 500});});</script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
     <script src="static/app.js"></script>
 
     <script>
