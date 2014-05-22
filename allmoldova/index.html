@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="assets/ico/favicon.ico">
+
+    <title>Генератор новостей для allmoldova.com</title>
+
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+
+    <link href="assets/css/style.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+     
+    <body ng-app="allmoldovagen">
+	
+		<div class="container" ng-controller="MainCtrl">
+			<form>
+				<div class="row">
+					<div class="col-md-6 col-md-offset-3 site">
+					
+					
+							<div class="site-title">
+								<h2>Генератор новостей для раздела News BLITZ на allmoldova.com</h2>
+							</div>
+							<div class="post">
+								<h4>Базовая информация о событии</h4>
+								<small>В этом разделе журналисту нужно рассказать основную информацию о мероприятии в формате <strong>что</strong>, <strong>где</strong>, <strong>когда</strong></small>.
+								<hr />
+								<div class="form-group">
+									<label>Название мероприятия: </label>
+									<input class="form-control" placeholder="MoldEuroEventLux" ng-model="eventName" />
+								</div>
+								<div class="form-group">
+									<label>Когда оно было?</label>
+									<input class="form-control" placeholder="17-18 мая" type="text"  ng-model="dates"/>
+								</div>
+								<div class="form-group">
+									<label>Первый в Молдове?</label>
+									<div class="checkbox">
+										<label><input type="radio" name="first" ng-model="firstInMoldova" value="1"> Да</label><br/>
+										<label><input type="radio" name="first" ng-model="firstInMoldova" value="0"> Нет</label>
+									</div>
+								</div>
+								<div class="form-group">
+									<label>В каком городе это было?</label>
+									<input class="form-control" placeholder="Кишинев" ng-model="city"/>
+								</div>
+								<div class="form-group">
+									<label>А где именно?</label>
+									<input class="form-control" placeholder="ASEM"  ng-model="place" />
+								</div>
+							</div>
+
+							<div class="post">
+								<small>Субъективное отношение автора к мероприятию</small>
+								<div class="form-group">
+									<label>Как это было:</label>
+									<select class="form-control" ng-model="attitude" ng-options="label for label in authorAttitude"></select>
+								</div>
+								<div class="form-group">
+									<label>Сколько было гостей?</label>
+									<input class="form-control" placeholder="130" ng-model="guests" type="number" />
+								</div>
+								
+								<div class="form-group">
+									<label>Перечислите через запятую название стран из которых прибыли гости:</label>
+									<textarea class="form-control" ng-model="countries"></textarea>
+								</div>
+							</div>
+
+							<div class="post">
+								<h4>Текст для читателей</h4>
+								<blockquote><h3 ng-show="eventName">{{eventName}} As Lifestyle</h3><span ng-show="dates" ng-bind="dates"></span> <span ng-show="acity">в <span ng-bind="acity"></span></span> <span ng-show="eventName">состоялся <span ng-bind="eventName"></span><span ng-if="firstInMoldova">: первый в нашей стране</span>.</span> <span ng-show="attitude">Как это было? Если вкратце, то это было <span ng-bind="attitude"></span>!</span> <span ng-if="place">В здании <span ng-bind="place"></span> </span><span ng-if="guests">собралось свыше <span ng-bind="guests"></span> гостей</span> <span ng-if="acountries">из <span ng-bind="acountries"></span>, для того чтобы пообщаться, познакомиться, обменяться опытом и поделиться накопленными знаниями.</span>
+
+								<a href="http://www.allmoldova.com">allmoldova</a>
+								</blockquote>
+							</div>
+						
+							<div class="post centered">
+								<img src="assets/img/ui-pic.jpg" class="img-circle" width="90">
+							</div>
+							
+							<div class="site-footer">
+								<p><a href="mailto:vasilcovsky@gmail.com">Igor V</p>
+							</div>
+						
+					</div><!-- /col-md-6 -->
+				</div><! --/row -->
+			</form>
+		</div><! --/container -->
+		                
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+
+
+    <script src="assets/js/bootstrap.min.js"></script>
+    
+    <script type="text/javascript" src="assets/js/jquery.backstretch.min.js"></script>
+    <script>$(function(){$.backstretch("assets/img/bg01.jpg", {speed: 500});});</script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+    <script src="static/app.js"></script>
+
+  </body>
+</html>
