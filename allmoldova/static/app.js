@@ -105,6 +105,13 @@
           }
         });
 
+        $scope.$watch('place', function(value) {
+          var value_ = value || '';
+          if (jQuery.trim(value_.length) > 3) {
+            $scope.aplace = caseService(value_, 'r');
+          }
+        });
+
     }
   ]);
 }());
